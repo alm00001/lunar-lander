@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var gravity = 0.098 /*0.1*/ ;
+  var gravity = 0.098;
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var ship = new Ship;
@@ -48,72 +48,72 @@ $(document).ready(function() {
       codeset[e.keyCode] = true;
       console.log("Verdadero, solo lo que se presiona", codeset);
       if (codeset[38] && codeset[37] && codeset[39]) {
-        ship.acelx = /*0.2*/ 0.17 * -(Math.cos(ship.angle));
-        ship.acely = /*0.2*/ 0.17 * (Math.sin(ship.angle));
-        ship.dAngle = -(2) * (Math.PI / 180);
-        ship.dAngle = (2) * (Math.PI / 180);
+        ship._acelx();
+        ship._acely();
+        ship._dAngleCounter();
+        ship._dAngleClock();
       };
       if (codeset[38] && codeset[37]) {
-        ship.acelx = /*0.2*/ 0.17 * -(Math.cos(ship.angle));
-        ship.acely = /*0.2*/ 0.17 * (Math.sin(ship.angle));
-        ship.dAngle = -(2) * (Math.PI / 180);
+        ship._acelx();
+        ship._acely();
+        ship._dAngleCounter();
       };
       if (codeset[38] && codeset[39]) {
-        ship.acelx = /*0.2*/ 0.17 * -(Math.cos(ship.angle));
-        ship.acely = /*0.2*/ 0.17 * (Math.sin(ship.angle));
-        ship.dAngle = (2) * (Math.PI / 180);
+        ship._acelx();
+        ship._acely();
+        ship._dAngleClock();
       };
       if (codeset[37] && codeset[39]) {
-        ship.dAngle = -(2) * (Math.PI / 180);
-        ship.dAngle = (2) * (Math.PI / 180);
+        ship._dAngleCounter();
+        ship._dAngleClock();
       };
       if (codeset[38]) {
-        ship.acelx = /*0.2*/ 0.17 * -(Math.cos(ship.angle));
-        ship.acely = /*0.2*/ 0.17 * (Math.sin(ship.angle));
+        ship._acelx();
+        ship._acely();
       };
       if (codeset[37]) {
-        ship.dAngle = -(2) * (Math.PI / 180);
+        ship._dAngleCounter();
       };
       if (codeset[39]) {
-        ship.dAngle = (2) * (Math.PI / 180);
+        ship._dAngleClock();
       }
     }
   }).on('keyup', function(e) {
-      if (e.keyCode in codeset) {
-        codeset[e.keyCode] = false;
-        console.log("Falso lo que se levanta?", codeset);
-        if (codeset[38] == false && codeset[37] == false && codeset[39] == false) {
-          ship.acelx = 0;
-          ship.acely = 0;
-          ship.dAngle = 0;
-          ship.dAngle = 0;
-        };
-        if (codeset[38] == false && codeset[37] == false) {
-          ship.acelx = 0;
-          ship.acely = 0;
-          ship.dAngle = 0;
-        };
-        if (codeset[38] == false && codeset[39] == false) {
-          ship.acelx = 0;
-          ship.acely = 0;
-          ship.dAngle = 0;
-        };
-        if (codeset[37] == false && codeset[39] == false) {
-          ship.dAngle = 0;
-          ship.dAngle = 0;
-        };
-        if (codeset[38] == false) {
-          ship.acelx = 0;
-          ship.acely = 0;
-          console.log(ship.acelx, ship.acely);
-        };
-        if (codeset[37] == false) {
-          ship.dAngle = 0;
-        };
-        if (codeset[39] == false) {
-          ship.dAngle = 0;
-        }
+    if (e.keyCode in codeset) {
+      codeset[e.keyCode] = false;
+      console.log("Falso lo que se levanta?", codeset);
+      if (codeset[38] == false && codeset[37] == false && codeset[39] == false) {
+        ship._acelxR();
+        ship._acelyR();
+        ship._dAngleCounterR();
+        ship._dAngleClockR();
+      };
+      if (codeset[38] == false && codeset[37] == false) {
+        ship._acelxR();
+        ship._acelyR();
+        ship._dAngleCounterR();
+      };
+      if (codeset[38] == false && codeset[39] == false) {
+        ship._acelxR();
+        ship._acelyR();
+        ship._dAngleClockR();
+      };
+      if (codeset[37] == false && codeset[39] == false) {
+        ship._dAngleCounterR();
+        ship._dAngleClockR();
+      };
+      if (codeset[38] == false) {
+        ship._acelxR();
+        ship._acelyR();
+        console.log(ship.acelx, ship.acely);
+      };
+      if (codeset[37] == false) {
+        ship._dAngleCounterR();
+      };
+      if (codeset[39] == false) {
+        ship._dAngleClockR();
       }
-    });
-var intervalId = setInterval (update, 20);
+    }
+  });
+  var intervalId = setInterval(update, 20);
 });
