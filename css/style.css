@@ -1,0 +1,14 @@
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+canvas {
+    background : #3333ff;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: 1px solid black;
+}
