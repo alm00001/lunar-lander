@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
   var gravity = 0.098;
   var canvas = document.getElementById('canvas');
@@ -13,6 +14,7 @@ $(document).ready(function() {
     ship.vy = ship.vy + (gravity - ship.acely); // MODIFICA EL EFECTO GRAVEDAD EN FUNCIÓN
     ship.y += ship.vy; // DEL EVENTO DE PULSACIÓN DE TECLA
     ship.angle += ship.dAngle;
+    ship.fuel -= ship.dfuel;
     //console.log(ship.acelx, ship.acely, ship.vx, ship.vy, ship.x, ship.y, "Angulo", (ship.angle * 180 / Math.PI));
     ship.draw(ctx);
   };
@@ -25,11 +27,11 @@ $(document).ready(function() {
     if (ship.y > land && ship.vy < 2) {
       ship.y = land; // DESTROZO EL VALOR DE Y
       clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
-      //alert("Mission Accomplished");
+      alert("Mission Accomplished");
     } else if (ship.y > land && ship.vy > 1) {
       ship.y = land; // DESTROZO EL VALOR DE Y
       clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
-      //alert("looser");
+      alert("looser");
     };
   };
 
@@ -41,27 +43,30 @@ $(document).ready(function() {
     39: false
   };
 
-  console.log('Todos falsos¿?', codeset);
+  //console.log('Todos falsos¿?', codeset);
 
   $(document).on('keydown', function(e) {
     if (e.keyCode in codeset) {
       codeset[e.keyCode] = true;
-      console.log("Verdadero, solo lo que se presiona", codeset);
+      //console.log("Verdadero, solo lo que se presiona", codeset);
       if (codeset[38] && codeset[37] && codeset[39]) {
         ship._acelx();
         ship._acely();
         ship._dAngleCounter();
         ship._dAngleClock();
+        ship._usingFuel();
       };
       if (codeset[38] && codeset[37]) {
         ship._acelx();
         ship._acely();
         ship._dAngleCounter();
+        ship._usingFuel();
       };
       if (codeset[38] && codeset[39]) {
         ship._acelx();
         ship._acely();
         ship._dAngleClock();
+        ship._usingFuel();
       };
       if (codeset[37] && codeset[39]) {
         ship._dAngleCounter();
@@ -70,6 +75,7 @@ $(document).ready(function() {
       if (codeset[38]) {
         ship._acelx();
         ship._acely();
+        ship._usingFuel();
       };
       if (codeset[37]) {
         ship._dAngleCounter();
@@ -81,22 +87,25 @@ $(document).ready(function() {
   }).on('keyup', function(e) {
     if (e.keyCode in codeset) {
       codeset[e.keyCode] = false;
-      console.log("Falso lo que se levanta?", codeset);
+      //console.log("Falso lo que se levanta?", codeset);
       if (codeset[38] == false && codeset[37] == false && codeset[39] == false) {
         ship._acelxR();
         ship._acelyR();
         ship._dAngleCounterR();
         ship._dAngleClockR();
+        ship._notUsingFuel();
       };
       if (codeset[38] == false && codeset[37] == false) {
         ship._acelxR();
         ship._acelyR();
         ship._dAngleCounterR();
+        ship._notUsingFuel();
       };
       if (codeset[38] == false && codeset[39] == false) {
         ship._acelxR();
         ship._acelyR();
         ship._dAngleClockR();
+        ship._notUsingFuel();
       };
       if (codeset[37] == false && codeset[39] == false) {
         ship._dAngleCounterR();
@@ -105,7 +114,7 @@ $(document).ready(function() {
       if (codeset[38] == false) {
         ship._acelxR();
         ship._acelyR();
-        console.log(ship.acelx, ship.acely);
+        ship._notUsingFuel();
       };
       if (codeset[37] == false) {
         ship._dAngleCounterR();
