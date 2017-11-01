@@ -7,8 +7,10 @@ this.height = 1080;
 };
 
 
-Board.prototype.updateShips= function (ship){
+Board.prototype.updateShips= function (ship, landing){
   this._hitBottom(ship); // LO PRIMERO DE TODO COMPROBAR SI LA PELOTA SE HA CHOCADO
+  console.log(landing);
+  landing._hitTop(ship);
   this.ctx.clearRect(0, 0, this.width, this.height);
   ship.vx = ship.vx + ship.acelx;
   ship.x += ship.vx;
@@ -18,7 +20,7 @@ Board.prototype.updateShips= function (ship){
   ship.fuel -= ship.dfuel;
   console.log(ship.acelx, ship.acely, ship.vx, ship.vy, ship.x, ship.y, "Angulo", (ship.angle * 180 / Math.PI));
   ship._draw(this.ctx);
-
+  landing._draw(this.ctx);
 };
 
 Board.prototype._hitBottom = function (ship){
@@ -32,11 +34,5 @@ Board.prototype._hitBottom = function (ship){
     ship.y = land; // DESTROZO EL VALOR DE Y
     clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
     alert("Game Over");
-
   };
-};
-
-
-function update() {
-
 };
