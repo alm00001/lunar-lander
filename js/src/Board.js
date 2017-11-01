@@ -18,6 +18,8 @@ Board.prototype.updateShips= function (ship, landing){
   ship.y += ship.vy; // DEL EVENTO DE PULSACIÓN DE TECLA
   ship.angle += ship.dAngle;
   ship.fuel -= ship.dfuel;
+  landing.x += landing.dx;
+  landing.y += landing.dy;
   console.log(ship.acelx, ship.acely, ship.vx, ship.vy, ship.x, ship.y, "Angulo", (ship.angle * 180 / Math.PI));
   ship._draw(this.ctx);
   landing._draw(this.ctx);
