@@ -1,38 +1,17 @@
+var intervalId; 
 $(document).ready(function() {
   var board = new Board();
   var ship = new Ship(100,100);
   var ship2 = new Ship(200,100);
 
-  function update() {
-    hitBottom(); // LO PRIMERO DE TODO COMPROBAR SI LA PELOTA SE HA CHOCADO
-    board.ctx.clearRect(0, 0, board.width, board.height);
-    ship.vx = ship.vx + ship.acelx;
-    ship.x += ship.vx;
-    ship.vy = ship.vy + (board.gravity - ship.acely); // MODIFICA EL EFECTO GRAVEDAD EN FUNCIÓN
-    ship.y += ship.vy; // DEL EVENTO DE PULSACIÓN DE TECLA
-    ship.angle += ship.dAngle;
-    ship.fuel -= ship.dfuel;
-    //console.log(ship.fuel);
-    console.log(ship.acelx, ship.acely, ship.vx, ship.vy, ship.x, ship.y, "Angulo", (ship.angle * 180 / Math.PI));
-    ship._draw(board.ctx);
-    ship2._draw(board.ctx);
-  };
+
+intervalId = setInterval(function (){
+    board.updateShips(ship);
+  }, 20);
 
 
 
-  //Comprueba si el "alunizaje" ha sido controlado o no
-  function hitBottom() {
-    var land = board.height - ship.radius; //LIMITE DE CHOQUE DE LA BOLA
-    if (ship.y > land && ship.vy < 2) {
-      ship.y = land; // DESTROZO EL VALOR DE Y
-      clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
-      alert("Mission Accomplished");
-    } else if (ship.y > land && ship.vy > 1) {
-      ship.y = land; // DESTROZO EL VALOR DE Y
-      clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
-      alert("Game Over");
-    };
-  };
+  //Comprueba si el "alunizaje" ha sido controlado o n
 
   //////////////////////////////////////////////////////////////////////////////////
 
@@ -124,5 +103,5 @@ $(document).ready(function() {
       }
     }
   });
-  var intervalId = setInterval(update, 20);
+
 });

@@ -1,12 +1,12 @@
 function Ship(x, y) {
-  this.x = x,
+    this.x = x,
     this.y = y,
     this.vx = 0,
     this.vy = 0,
     this.acelx = 0,
     this.acely = 0, // LA FUERZA (ACELERACIÓN) DE CONTRAPARTIDA POR EL USUARIO
     this.angle = Math.PI / 2;
-  this.dAngle = 0,
+    this.dAngle = 0,
     this.fuel = 1000,
     this.dfuel = 0,
     this.radius = 22,
