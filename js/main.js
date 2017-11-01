@@ -1,4 +1,5 @@
-var intervalId; 
+
+var intervalId;
 $(document).ready(function() {
   var board = new Board();
   var ship = new Ship(100,100);
@@ -33,18 +34,21 @@ intervalId = setInterval(function (){
         ship._dAngleCounter();
         ship._dAngleClock();
         ship._fuelInUse();
+        ship.image.src;
       };
       if (codeset[38] && codeset[37]) {
         ship._acelx();
         ship._acely();
         ship._dAngleCounter();
         ship._fuelInUse();
+        ship.image.src;
       };
       if (codeset[38] && codeset[39]) {
         ship._acelx();
         ship._acely();
         ship._dAngleClock();
         ship._fuelInUse();
+        ship.image.src;
       };
       if (codeset[37] && codeset[39]) {
         ship._dAngleCounter();
@@ -54,6 +58,7 @@ intervalId = setInterval(function (){
         ship._acelx();
         ship._acely();
         ship._fuelInUse();
+        ship.image.src;
       };
       if (codeset[37]) {
         ship._dAngleCounter();
@@ -72,18 +77,21 @@ intervalId = setInterval(function (){
         ship._dAngleCounterR();
         ship._dAngleClockR();
         ship._fuelNotInUse();
+        ship.image2.src;
       };
       if (codeset[38] == false && codeset[37] == false) {
         ship._acelxR();
         ship._acelyR();
         ship._dAngleCounterR();
         ship._fuelNotInUse();
+        ship.image2.src;
       };
       if (codeset[38] == false && codeset[39] == false) {
         ship._acelxR();
         ship._acelyR();
         ship._dAngleClockR();
         ship._fuelNotInUse();
+        ship.image2.src;
       };
       if (codeset[37] == false && codeset[39] == false) {
         ship._dAngleCounterR();
@@ -93,6 +101,7 @@ intervalId = setInterval(function (){
         ship._acelxR();
         ship._acelyR();
         ship._fuelNotInUse();
+        ship.image2.src;
         //console.log(ship.acelx, ship.acely);
       };
       if (codeset[37] == false) {

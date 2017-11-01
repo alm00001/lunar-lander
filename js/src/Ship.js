@@ -11,6 +11,7 @@ function Ship(x, y) {
     this.dfuel = 0,
     this.radius = 22,
     this.color = "white";
+
 };
 
 Ship.prototype._draw = function(ctx) {

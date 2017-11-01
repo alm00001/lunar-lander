@@ -1,14 +1,42 @@
 body {
-  padding: 0px;
+  padding: 100px;
   margin: 0px;
+
+  animation: colorchange 50s; /* animation-name followed by duration in seconds*/
+     /* you could also use milliseconds (ms) or something like 2.5s */
+  -webkit-animation: colorchange 50s; /* Chrome and Safari */
+}
+
+@keyframes colorchange
+{
+  0%   {background: red;}
+  25%  {background: yellow;}
+  50%  {background: blue;}
+  75%  {background: green;}
+  100% {background: red;}
+}
+
+@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+{
+  0%   {background: red;}
+  25%  {background: yellow;}
+  50%  {background: blue;}
+  75%  {background: green;}
+  100% {background: red;}
+
 }
 
 canvas {
-    background : #3333ff;
+    width: 1920;
+    height: 1080;
+    background-image: url("../img/moon.jpg");
+    background-repeat: no-repeat;
+    background-color: #cccccc;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
     margin-right: auto;
     display: block;
     border: 1px solid black;
+    align-self: center;
 }

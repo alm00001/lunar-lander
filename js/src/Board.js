@@ -1,3 +1,4 @@
+
 function Board(){
 this.gravity = 0.098;
 this.ctx = document.getElementById('canvas').getContext('2d');
@@ -25,7 +26,7 @@ Board.prototype._hitBottom = function (ship){
   if (ship.y > land && ship.vy < 2 ) {
     ship.y = land; // DESTROZO EL VALOR DE Y
     clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
-    alert("Mission Accomplished");
+    alert("Mission Accomplished!!!!!  "+ship.fuel*2+" Points");
     clearInterval();
   } else if (ship.y > land && ship.vy > 1) {
     ship.y = land; // DESTROZO EL VALOR DE Y
