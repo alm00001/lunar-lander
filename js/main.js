@@ -5,6 +5,35 @@ $(document).ready(function() {
   var ship = new Ship(board.width/2,100,"./img/ship1.png");
   var landingArea = new LandingArea(board.width,board.height);
 
+
+//Sound precharging
+  ion.sound({
+    sounds: [
+        {
+            name: "cheers",
+            volume: 1,
+        },
+        {
+            name: "gameover",
+            volume: 1,
+        },
+        {
+            name: "problem",
+            volume: 1,
+        },
+        {
+            name:"thrust",
+            volume: 1,
+        }
+    ],
+    volume: 1,
+    path: "..   /sfx",
+    preload: true
+});
+
+// Play Sound
+ion.sound.play("cheers");
+
 intervalId = setInterval(function (){
     board.updateShips(ship, landingArea);
     //landingArea.draw(ctx);
