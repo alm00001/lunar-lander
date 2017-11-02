@@ -1,20 +1,17 @@
 function Ship(x, y) {
-    this.x = x,
-    this.y = y,
-    this.vx = 0,
-    this.vy = 0,
-    this.acelx = 0,
-    this.acely = 0, // LA FUERZA (ACELERACIÓN) DE CONTRAPARTIDA POR EL USUARIO
-    this.angle = Math.PI / 2;
-    this.dAngle = 0,
-    this.fuel = 1000,
-    this.dfuel = 0,
-    this.radius = 22,
+    this.x = x;
+    this.y = y;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.accel = 0;
+    this.angle = 90*(Math.PI/180);
+    this.fuel = 1000;
+    this.radius = 22;
     this.color = "white";
-
+    this.fuel = 1000;
 };
 
-Ship.prototype._draw = function(ctx) {
+Ship.prototype.draw = function(ctx) {
   ctx.beginPath();
   ctx.arc(this.x, this.y, this.radius, this.angle - (Math.PI / 2), this.angle + (Math.PI / 2), true);
   ctx.closePath();
@@ -22,51 +19,65 @@ Ship.prototype._draw = function(ctx) {
   ctx.fill();
   ctx.fillStyle = "red";
   ctx.font = "30px Courier";
-  ctx.fillText("Fuel: " + this.fuel, 1500, 300);
+  ctx.fillText("Fuel: " + this.fuel, 1600 , 100);
 };
 
-Ship.prototype._acelx = function() {
-  this.acelx = 0.25 * -(Math.cos(this.angle));
+Ship.prototype.update = function() {
+  var gravity = 0.098;
+  this.x += this.speedX = this.speedX + (this.accel*-Math.cos(this.angle)); //signos????
+  this.y -= this.speedY = this.speedY + (this.accel*Math.sin(this.angle)) - gravity; //creo que aqui los signos estan bien
 };
 
-Ship.prototype._acely = function() {
-  this.acely = 0.25 * (Math.sin(this.angle));
-};
+Ship.prototype.move = function(codeset){
+  var incrementDegrees = 5;
+  var fuelconsume= 3;
 
-Ship.prototype._dAngleCounter = function() {
-  this.dAngle = -(5) * (Math.PI / 180);
-};
+  if(codeset.up && codeset.left && codeset.right){
+    this.accel = 0.25;
+    this.fuel -= fuelconsume;
+  }else{
+    this.accel = 0;
+    this.fuel = this.fuel;
+  }
 
-Ship.prototype._dAngleClock = function() {
-  this.dAngle = (5) * (Math.PI / 180);
-};
+  if(codeset.up && codeset.left){
+    this.accel = 0.25;
+    this.angle -= (Math.PI/180) * incrementDegrees;
+    this.fuel -= fuelconsume;
+  }else{
+    this.accel = 0;
+    this.angle = this.angle;
+    this.fuel = this.fuel;
+  }
 
-Ship.prototype._acelxR = function() {
-  this.acelx = 0;
-};
+  if(codeset.up && codeset.right){
+    this.accel = 0.25;
+    this.angle += (Math.PI/180) * incrementDegrees;
+    this.fuel -= fuelconsume;
+  }else{
+    this.accel = 0;
+    this.angle = this.angle;
+    this.fuel = this.fuel;
+  }
 
-Ship.prototype._acelyR = function() {
-  this.acely = 0;
-};
+  if(codeset.up){
+    this.accel = 0.25;
+    this.fuel -= fuelconsume;
+  }else{
+    this.accel = 0;
+    this.fuel = this.fuel;
+  }
 
-Ship.prototype._dAngleCounterR = function() {
-  this.dAngle = 0;
-};
+  if(codeset.left){
+    this.angle -= (Math.PI/180) * incrementDegrees;
+  }else{
+    this.angle = this.angle;
+  }
 
-Ship.prototype._dAngleClockR = function() {
-  this.dAngle = 0;
-};
+  if(codeset.right){
+    this.angle += (Math.PI/180) * incrementDegrees;
+  }else{
+    this.angle = this.angle;
+  }
 
-Ship.prototype._fuelInUse = function() {
-  if (this.fuel > 0) {
-    this.dfuel = 1;
-
-  } else {
-    this.dfuel = 0;
-    this.acelx = 0;
-    this.acely = 0;
-  };
-};
-Ship.prototype._fuelNotInUse = function() {
-  this.dfuel = 0;
 };
