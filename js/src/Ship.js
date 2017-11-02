@@ -31,6 +31,7 @@ Ship.prototype.update = function() {
   this.y -= this.speedY;
   this.speedX = this.speedX + (this.accel * -Math.cos(this.angle));
   this.speedY = this.speedY + (this.accel * Math.sin(this.angle)) - gravity;
+  if((Math.round(this.angle * (180 / Math.PI))) % 90 == 0){ion.sound.play("problem");};
 };
 
 Ship.prototype.fuelInUse = function() {
@@ -52,7 +53,7 @@ Ship.prototype.move = function(codeset) {
     this.fuelInUse();
 
 
-  } else {
+  } else if(!codeset.up && !codeset.left && !codeset.right) {
     this.accel = 0;
     this.fuel = this.fuel;
 
@@ -63,7 +64,7 @@ Ship.prototype.move = function(codeset) {
     this.angle -= (Math.PI / 180) * incrementDegrees;
     this.fuelInUse();
     ion.sound.play("thrust");
-  } else {
+  } else if (!codeset.up && !codeset.left) {
     this.accel = 0;
     this.angle = this.angle;
     this.fuel = this.fuel;
@@ -74,7 +75,7 @@ Ship.prototype.move = function(codeset) {
     this.angle += (Math.PI / 180) * incrementDegrees;
     this.fuelInUse();
     ion.sound.play("thrust");
-  } else {
+  } else if (!codeset.up && !codeset.right){
     this.accel = 0;
     this.angle = this.angle;
     this.fuel = this.fuel;
@@ -84,20 +85,20 @@ Ship.prototype.move = function(codeset) {
     this.accel = 0.25;
     this.fuelInUse();
     ion.sound.play("thrust");
-  } else {
+  } else if (!codeset.up) {
     this.accel = 0;
     this.fuel = this.fuel;
   }
 
   if (codeset.left) {
     this.angle -= (Math.PI / 180) * incrementDegrees;
-  } else {
+  } else if(!codeset.left){
     this.angle = this.angle;
   }
 
   if (codeset.right) {
     this.angle += (Math.PI / 180) * incrementDegrees;
-  } else {
+  } else if(!codeset.right){
     this.angle = this.angle;
   }
 
