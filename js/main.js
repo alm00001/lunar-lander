@@ -3,11 +3,11 @@ var intervalId;
 $(document).ready(function() {
   var board = new Board();
   var ship = new Ship(board.width/2,100);
-  var landingArea = new LandingArea();
+  var landingArea = new LandingArea(board.width,board.height);
 
 intervalId = setInterval(function (){
     board.updateShips(ship, landingArea);
-    //landingArea._draw(ctx);
+    //landingArea.draw(ctx);
   }, 20);
 
 

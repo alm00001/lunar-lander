@@ -7,36 +7,28 @@ this.height = 1080;
 };
 
 
-Board.prototype.updateShips= function (ship, landing){
+Board.prototype.updateShips = function (ship, landing){
   this.ctx.clearRect(0, 0, this.width, this.height);
   ship.update();
   ship.draw(this.ctx);
-  // this._hitBottom(ship); // LO PRIMERO DE TODO COMPROBAR SI LA PELOTA SE HA CHOCADO
-  // console.log(landing);
-  // landing._hitTop(ship);
-  // ship.vx = ship.vx + ship.acelx;
-  // ship.x += ship.vx;
-  // ship.vy = ship.vy + (this.gravity - ship.acely); // MODIFICA EL EFECTO GRAVEDAD EN FUNCIÓN
-  // ship.y += ship.vy; // DEL EVENTO DE PULSACIÓN DE TECLA
-  // ship.angle += ship.dAngle;
-  // ship.fuel -= ship.dfuel;
-  // landing.x += landing.dx;
-  // landing.y += landing.dy;
-  // console.log(ship.acelx, ship.acely, ship.vx, ship.vy, ship.x, ship.y, "Angulo", (ship.angle * 180 / Math.PI));
-  // ship._draw(this.ctx);
-  // landing._draw(this.ctx);
+  this.hitBottom(ship);
+  //console.log(landing);
+  landing.hitTop(ship);
+  //console.log(ship.accel, ship.speedX, ship.speedY, ship.x, ship.y, "Angulo", Math.round(ship.angle * 180 / Math.PI));
+  // console.log("Angle: " + Math.round(ship.angle*(180/Math.PI)));
+  landing.draw(this.ctx);
 };
 
-Board.prototype._hitBottom = function (ship){
-  var land = this.height - ship.radius; //LIMITE DE CHOQUE DE LA BOLA
-  if (ship.y > land && ship.vy < 2 ) {
-    ship.y = land; // DESTROZO EL VALOR DE Y
-    clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
+Board.prototype.hitBottom = function (ship){
+  var land = this.height - ship.radius;
+  if (ship.y > land && ship.speedY > -1.8 ) {
+    ship.y = land;
+    clearInterval(intervalId);
     alert("Mission Accomplished!!!!!  "+ship.fuel*2+" Points");
     clearInterval();
-  } else if (ship.y > land && ship.vy > 1) {
-    ship.y = land; // DESTROZO EL VALOR DE Y
-    clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
+  } else if (ship.y > land && ship.speedY < -1.8) {
+    ship.y = land;
+    clearInterval(intervalId);
     alert("Game Over");
   };
 };
