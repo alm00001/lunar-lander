@@ -12,6 +12,18 @@ $(document).ready(function() {
         {
             name: "cheers",
             volume: 1,
+        },
+        {
+            name: "gameover",
+            volume: 1,
+        },
+        {
+            name: "problem",
+            volume: 1,
+        },
+        {
+            name: "thrust",
+            volume: 1,
         }
     ],
     volume: 1,
