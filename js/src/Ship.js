@@ -51,15 +51,18 @@ Ship.prototype.move = function(codeset) {
     this.accel = 0.25;
     this.fuelInUse();
 
+
   } else {
     this.accel = 0;
     this.fuel = this.fuel;
+
   }
 
   if (codeset.up && codeset.left) {
     this.accel = 0.25;
     this.angle -= (Math.PI / 180) * incrementDegrees;
     this.fuelInUse();
+    ion.sound.play("thrust");
   } else {
     this.accel = 0;
     this.angle = this.angle;
@@ -70,6 +73,7 @@ Ship.prototype.move = function(codeset) {
     this.accel = 0.25;
     this.angle += (Math.PI / 180) * incrementDegrees;
     this.fuelInUse();
+    ion.sound.play("thrust");
   } else {
     this.accel = 0;
     this.angle = this.angle;
@@ -79,6 +83,7 @@ Ship.prototype.move = function(codeset) {
   if (codeset.up) {
     this.accel = 0.25;
     this.fuelInUse();
+    ion.sound.play("thrust");
   } else {
     this.accel = 0;
     this.fuel = this.fuel;

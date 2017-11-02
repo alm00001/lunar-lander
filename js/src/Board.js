@@ -24,11 +24,13 @@ Board.prototype.hitBottom = function (ship){
   if (ship.y > land && ship.speedY > -1.8 ) {
     ship.y = land;
     clearInterval(intervalId);
+    ion.sound.play("cheers");
     alert("Mission Accomplished!!!!!  "+ship.fuel*2+" Points");
     clearInterval();
   } else if (ship.y > land && ship.speedY < -1.8) {
     ship.y = land;
     clearInterval(intervalId);
+    ion.sound.play("gameover");
     alert("Game Over");
   };
 };

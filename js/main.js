@@ -27,12 +27,12 @@ $(document).ready(function() {
         }
     ],
     volume: 1,
-    path: "..   /sfx",
+    path: "./sfx/",
     preload: true
 });
 
 // Play Sound
-ion.sound.play("cheers");
+//ion.sound.play("cheers");
 
 intervalId = setInterval(function (){
     board.updateShips(ship, landingArea);

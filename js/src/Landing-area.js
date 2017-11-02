@@ -27,11 +27,13 @@ LandingArea.prototype.hitTop = function (ship){
   if (ship.y > land && ship.y < land + this.height && (ship.x-ship.radius)>this.x && (ship.x+ship.radius)<this.x+this.width && ship.speedY >-1.8 && ship.angle > (75*(Math.PI/180) && ship.angle < (105*(Math.PI/180) ) )){
     ship.y = land; // DESTROZO EL VALOR DE Y
     clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
+    ion.sound.play("cheers");
     alert("Mission Accomplished!!!!!  "+ship.fuel*4+" Points");
     clearInterval();
   } else if (ship.y > land && ship.y < land + this.height && (ship.x-ship.radius)>this.x && (ship.x+ship.radius)<this.x+this.width && ship.speedY <-1.8 ) {
     ship.y = land; // DESTROZO EL VALOR DE Y
     clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
+    ion.sound.play("gameover");
     alert("Game Over");
   };
 };
