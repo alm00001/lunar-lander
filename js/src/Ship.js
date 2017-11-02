@@ -27,11 +27,14 @@ Ship.prototype.draw = function(ctx) {
 
 Ship.prototype.update = function() {
   var gravity = 0.098;
+  var gravity = 0;
   this.x += this.speedX;
   this.y -= this.speedY;
   this.speedX = this.speedX + (this.accel * -Math.cos(this.angle));
   this.speedY = this.speedY + (this.accel * Math.sin(this.angle)) - gravity;
-  if((Math.round(this.angle * (180 / Math.PI))) % 90 == 0){ion.sound.play("problem");};
+  console.log(this.angle);
+  if(Math.sin(this.angle)< -0.95 ){ion.sound.play("problem");};
+  //console.log("mira aqui" + Math.sin(this.angle));
 };
 
 Ship.prototype.fuelInUse = function() {
