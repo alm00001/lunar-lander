@@ -2,7 +2,7 @@
 var intervalId;
 $(document).ready(function() {
   var board = new Board();
-  var ship = new Ship(board.width/2,100);
+  var ship = new Ship(board.width/2,100,"./img/ship1.png");
   var landingArea = new LandingArea(board.width,board.height);
 
 intervalId = setInterval(function (){
