@@ -15,7 +15,7 @@ $(document).ready(function() {
         }
     ],
     volume: 1,
-    path: "../../sfx",
+    path: "../sfx",
     preload: true
 });
 
