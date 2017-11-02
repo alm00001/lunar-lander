@@ -27,7 +27,6 @@ Ship.prototype.draw = function(ctx) {
 
 Ship.prototype.update = function() {
   var gravity = 0.098;
-  var gravity = 0;
   this.x += this.speedX;
   this.y -= this.speedY;
   this.speedX = this.speedX + (this.accel * -Math.cos(this.angle));
